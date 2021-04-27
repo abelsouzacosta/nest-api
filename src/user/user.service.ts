@@ -52,4 +52,16 @@ export class UserService {
 
     return userUpdated;
   }
+
+  public async delete(id: string): Promise<boolean> {
+    const user = await this.repository.findOne(id);
+
+    if (!id) throw new NotFoundException('User not found');
+
+    const deleted = this.repository.delete(user);
+
+    if (!deleted) return false;
+
+    return true;
+  }
 }

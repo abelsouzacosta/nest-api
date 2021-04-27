@@ -38,4 +38,11 @@ export class UserResolver {
 
     return user;
   }
+
+  @Mutation(() => Boolean)
+  public async delete(@Args('id') id: string): Promise<boolean> {
+    const deleted = this.userService.delete(id);
+
+    return deleted;
+  }
 }
